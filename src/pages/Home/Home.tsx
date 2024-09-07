@@ -4,6 +4,7 @@ import WhyChooseUs from "../../components/WhyChooseUs";
 import HeroSection from "./HeroSection";
 import ServiceAdvertisement from "./ServiceAdvertisement";
 import RoomSection from "./RoomSection";
+import ScrollToTopButton from "../../components/ScrollToTopButton";
 
 const Home = () => {
     return (
@@ -14,6 +15,7 @@ const Home = () => {
             <WhyChooseUs></WhyChooseUs>
             <BookingSteps></BookingSteps>
             <TestimonialsCarousel></TestimonialsCarousel>
+            <ScrollToTopButton></ScrollToTopButton>
         </div>
     );
 };
