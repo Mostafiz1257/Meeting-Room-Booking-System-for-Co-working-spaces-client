@@ -1,3 +1,4 @@
+import ScrollToTopButton from "../../components/ScrollToTopButton";
 import MeetTheTeamSection from "./MeetTheTeamSection";
 import OurMissionSection from "./OurMissionSection";
 import OurStorySection from "./OurStorySection";
@@ -9,6 +10,7 @@ const AboutUs = () => {
             <OurMissionSection></OurMissionSection>
             <MeetTheTeamSection></MeetTheTeamSection>
             <OurStorySection></OurStorySection>
+            <ScrollToTopButton></ScrollToTopButton>
         </div>
     );
 };

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { toast } from "sonner";
 import ContactSection from "./ContactSection";
+import ScrollToTopButton from "../../components/ScrollToTopButton";
 
 const ContractUs = () => {
   const [formData, setFormData] = useState({
@@ -112,6 +113,7 @@ const ContractUs = () => {
           </div>
         </div>
       </section>
+      <ScrollToTopButton></ScrollToTopButton>
     </>
   );
 };
