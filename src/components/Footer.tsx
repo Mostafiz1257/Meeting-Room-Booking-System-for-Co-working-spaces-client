@@ -17,7 +17,7 @@ const Footer: React.FC = () => {
             <h5 className="text-lg font-bold mb-4">Quick Links</h5>
             <ul className="space-y-2">
               <li><a href="/" className="hover:text-gray-300">Home</a></li>
-              <li><a href="https://meeting-room-theta.vercel.app/about-us/meeting-rooms" className="hover:text-gray-300">Meeting Rooms</a></li>
+              <li><a href="https://meeting-room-theta.vercel.app/meeting-rooms" className="hover:text-gray-300">Meeting Rooms</a></li>
               <li><a href="https://meeting-room-theta.vercel.app/about-us" className="hover:text-gray-300">About Us</a></li>
               <li><a href="https://meeting-room-theta.vercel.app/contract-us" className="hover:text-gray-300">Contact Us</a></li>
             </ul>

@@ -21,7 +21,7 @@ const Navbar = () => {
             </Link>
           </div>
 
-          {/* Menu Items */}
+          
           <div className="hidden sm:flex space-x-8 items-center">
             <Link
               to="/"
