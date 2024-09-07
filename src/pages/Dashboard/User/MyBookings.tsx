@@ -53,10 +53,8 @@ const MyBookings = () => {
                       {booking.slots[0]?.startTime} -{" "}
                       {booking.slots[0]?.endTime}
                     </td>
-                    <td>
-                      {booking.isConfirmed}
-                    </td>
-                    {/* <td
+                   
+                    <td
                       className={`py-4 px-6 border-r ${
                         booking.isConfirmed === "unconfirmed"
                           ? "text-red-500"
@@ -66,26 +64,25 @@ const MyBookings = () => {
                       {booking.isConfirmed === "unconfirmed"
                         ? "Unconfirmed"
                         : "Confirmed"}
-                    </td> */}
-                    {/* <td className="py-4 px-6">
+                    </td>
+                    <td className="py-4 px-6">
                       <button
                         className={`py-2 px-4 rounded ${
                           completedBookings.includes(booking._id)
-                            ? "bg-gray-400 cursor-not-allowed"
+                            ? "bg-gray-400 "
                             : "bg-[#003580] hover:bg-[#001e40] text-white"
                         }`}
                         onClick={() => handleCheckout(booking)}
                         // disabled={completedBookings.includes(booking._id)}
+                        disabled ={booking.isConfirmed!=='unconfirmed'}
                      
                       >
                         {completedBookings.includes(booking._id)
                           ? "Payment Complete"
                           : "Checkout"}
                       </button>
-                    </td> */}
-                    <td>
-                      <button disabled={booking.isConfirmed=="confirmed"}>Go away</button>
                     </td>
+                   
                   </tr>
                 ))}
               </tbody>
