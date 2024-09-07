@@ -18,16 +18,18 @@ const Dashboard = () => {
         <FiMenu size={24} />
       </button>
       <Sidebar isOpen={isOpen} toggleSidebar={toggleSidebar} />
-      <div className="flex-grow bg-white overflow-auto">
-        <div className="bg-[#003580] shadow-md ">
+      <div className="flex-grow  bg-white overflow-auto">
+        <div className="bg-[#003580] shadow-md fixed w-full ">
           <div className="flex-shrink-0 flex p-3 items-center ">
             <Link to="/" className="text-2xl font-poppins font-bold text-white">
               Meeting Hub
             </Link>
           </div>
         </div>
-        <div className="p-2"></div>
+        <div className="mt-[60px]">
+
         <Outlet />
+        </div>
       </div>
     </div>
   );

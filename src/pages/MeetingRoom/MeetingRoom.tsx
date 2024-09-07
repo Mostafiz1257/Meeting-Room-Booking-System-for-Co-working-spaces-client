@@ -47,7 +47,7 @@ const MeetingRoom: React.FC = () => {
     setCapacityFilter("");
     setPriceFilter("");
     setSortOption("");
-    setCurrentPage(1); // Reset to first page when filters are cleared
+    setCurrentPage(1); 
   };
 
   const handlePreviousPage = () => {
