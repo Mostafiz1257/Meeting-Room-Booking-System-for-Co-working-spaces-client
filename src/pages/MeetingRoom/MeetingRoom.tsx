@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Loader from "../../components/shared/Loader";
 import { useGetAllRoomsQuery } from "../../redux/features/admin/roomManagement.api";
 import { IRoom } from "../../types/room.type";
@@ -7,25 +7,37 @@ import Card from "./Card";
 const MeetingRoom: React.FC = () => {
   const { data, isLoading } = useGetAllRoomsQuery({});
   const [searchQuery, setSearchQuery] = useState<string>("");
+  const [debouncedSearchQuery, setDebouncedSearchQuery] =
+    useState<string>(searchQuery);
   const [capacityFilter, setCapacityFilter] = useState<string>("");
   const [priceFilter, setPriceFilter] = useState<string>("");
   const [sortOption, setSortOption] = useState<string>("");
   const [currentPage, setCurrentPage] = useState<number>(1);
   const rooms: IRoom[] = data?.data || [];
-  
+
   const itemsPerPage = 10;
   const totalPages = Math.ceil(rooms.length / itemsPerPage);
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedSearchQuery(searchQuery);
+    }, 500);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [searchQuery]);
 
   if (isLoading) {
     return <Loader />;
   }
 
-  const filteredRooms = rooms
-    .filter((room) =>
-      room.name.toLowerCase().includes(searchQuery.toLowerCase()) &&
+  const filteredRooms = rooms.filter(
+    (room) =>
+      room.name.toLowerCase().includes(debouncedSearchQuery.toLowerCase()) &&
       (capacityFilter === "" || room.capacity === Number(capacityFilter)) &&
       (priceFilter === "" || room.pricePerSlot <= Number(priceFilter))
-    );
+  );
 
   const sortedRooms = filteredRooms.sort((a, b) => {
     if (sortOption === "priceAsc") {
@@ -47,7 +59,7 @@ const MeetingRoom: React.FC = () => {
     setCapacityFilter("");
     setPriceFilter("");
     setSortOption("");
-    setCurrentPage(1); 
+    setCurrentPage(1);
   };
 
   const handlePreviousPage = () => {
