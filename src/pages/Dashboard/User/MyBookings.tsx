@@ -12,7 +12,6 @@ const MyBookings = () => {
   const { data, isLoading } = useMyBookingsQuery({});
   const user = useAppSelector(currentUser);
   const navigate = useNavigate();
-
   const [completedBookings, setCompletedBookings] = useState<string[]>([]);
 
   if (isLoading) {
@@ -46,12 +45,18 @@ const MyBookings = () => {
                     key={booking._id}
                     className="border-b transition duration-300 ease-in-out hover:bg-[#d4e2f4]"
                   >
-                    <td className="py-4 px-6 border-r">{booking?.room?.name}</td>
+                    <td className="py-4 px-6 border-r">
+                      {booking?.room?.name}
+                    </td>
                     <td className="py-4 px-6 border-r">{booking?.date}</td>
                     <td className="py-4 px-6 border-r">
-                      {booking.slots[0]?.startTime} - {booking.slots[0]?.endTime}
+                      {booking.slots[0]?.startTime} -{" "}
+                      {booking.slots[0]?.endTime}
                     </td>
-                    <td
+                    <td>
+                      {booking.isConfirmed}
+                    </td>
+                    {/* <td
                       className={`py-4 px-6 border-r ${
                         booking.isConfirmed === "unconfirmed"
                           ? "text-red-500"
@@ -61,8 +66,8 @@ const MyBookings = () => {
                       {booking.isConfirmed === "unconfirmed"
                         ? "Unconfirmed"
                         : "Confirmed"}
-                    </td>
-                    <td className="py-4 px-6">
+                    </td> */}
+                    {/* <td className="py-4 px-6">
                       <button
                         className={`py-2 px-4 rounded ${
                           completedBookings.includes(booking._id)
@@ -70,12 +75,16 @@ const MyBookings = () => {
                             : "bg-[#003580] hover:bg-[#001e40] text-white"
                         }`}
                         onClick={() => handleCheckout(booking)}
-                        disabled={completedBookings.includes(booking._id)}
+                        // disabled={completedBookings.includes(booking._id)}
+                     
                       >
                         {completedBookings.includes(booking._id)
                           ? "Payment Complete"
                           : "Checkout"}
                       </button>
+                    </td> */}
+                    <td>
+                      <button disabled={booking.isConfirmed=="confirmed"}>Go away</button>
                     </td>
                   </tr>
                 ))}
