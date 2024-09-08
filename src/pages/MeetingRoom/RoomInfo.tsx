@@ -10,15 +10,15 @@ const RoomInfo: React.FC<RoomInfoProps> = ({ room }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const images = room?.image || [];
 
-  // Automatically move to the next image every 3 seconds
+
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImageIndex((prevIndex) =>
         prevIndex === images.length - 1 ? 0 : prevIndex + 1
       );
-    }, 3000); // Change image every 3 seconds
+    }, 3000); 
 
-    return () => clearInterval(interval); // Cleanup on unmount
+    return () => clearInterval(interval); 
   }, [images.length]);
 
   const handlePrevClick = () => {
@@ -45,10 +45,10 @@ const RoomInfo: React.FC<RoomInfoProps> = ({ room }) => {
         <p className="text-gray-500 md:pl-4 md:pt-1 text-lg">Room: {room?.roomNo}</p>
       </div>
 
-      {/* Image Slider */}
+      
       <div className="relative mt-6 w-full h-[400px] rounded-xl overflow-hidden shadow-lg">
         <div
-          className="flex transition-transform duration-700 ease-in-out"
+          className="flex transition-transform duration-700 ease-in-out h-full"
           style={{
             transform: `translateX(-${currentImageIndex * 100}%)`,
             width: `${images.length * 100}%`,
@@ -60,12 +60,12 @@ const RoomInfo: React.FC<RoomInfoProps> = ({ room }) => {
               className="object-cover w-full h-full"
               src={image}
               alt={`room_image_${index}`}
-              style={{ minWidth: "100%", maxWidth: "100%" }} // Ensure each image takes up full space
+              style={{ minWidth: "100%", maxWidth: "100%" }} 
             />
           ))}
         </div>
 
-        {/* Arrow Controls */}
+       
         <div
           className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-gray-800 bg-opacity-50 p-2 rounded-full cursor-pointer text-white hover:bg-opacity-70 transition-all duration-300"
           onClick={handlePrevClick}
@@ -79,14 +79,14 @@ const RoomInfo: React.FC<RoomInfoProps> = ({ room }) => {
           <FaArrowRight size={20} />
         </div>
 
-        {/* Price Overlay */}
+        
         <div className="absolute bottom-0 left-0 bg-[#003580] bg-opacity-80 text-white text-xl font-semibold py-2 px-6 rounded-tr-xl shadow-lg">
           ${room?.pricePerSlot}
           <span className="text-sm text-gray-300"> (per slot)</span>
         </div>
       </div>
 
-      {/* Image Indicators */}
+     
       <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
         {images.map((_, index) => (
           <div
@@ -101,7 +101,7 @@ const RoomInfo: React.FC<RoomInfoProps> = ({ room }) => {
         ))}
       </div>
 
-      {/* Amenities */}
+      
       <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-8">
         {room?.amenities?.map((amenity, index) => (
           <div

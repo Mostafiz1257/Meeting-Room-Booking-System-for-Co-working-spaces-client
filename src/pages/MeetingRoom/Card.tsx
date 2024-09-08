@@ -7,9 +7,9 @@ interface CardProps {
   room: IRoom;
 }
 
-
-const  Card: React.FC<CardProps> = ({ room }) => {
+const Card: React.FC<CardProps> = ({ room }) => {
   const { name, image, pricePerSlot, capacity, roomNo } = room;
+  const firstImage = image.length > 0 ? image[0] : ''; 
 
   return (
     <Link to={`/room-details/${room._id}`} className="col-span-1 cursor-pointer group">
@@ -17,7 +17,7 @@ const  Card: React.FC<CardProps> = ({ room }) => {
         <div className="aspect-square w-full relative overflow-hidden rounded-xl">
           <img
             className="object-cover h-full w-full transition-transform duration-300 group-hover:scale-110"
-            src={image}
+            src={firstImage}
             alt={name}
           />
           <div className="absolute top-3 right-3 text-white bg-black bg-opacity-60 p-1 rounded-full">

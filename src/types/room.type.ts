@@ -6,7 +6,7 @@ export type IRoom = {
     pricePerSlot: number;
     amenities: string[];
     isDeleted?: boolean;
-    image?:string[]; 
+    image:string[]; 
     _id:string
   }
 
