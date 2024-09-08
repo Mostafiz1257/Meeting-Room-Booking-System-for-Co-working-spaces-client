@@ -14,8 +14,8 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
           isOpen ? "translate-x-0" : "-translate-x-full"
         } transition-transform duration-300 ease-in-out w-64 bg-white text-[#003580] flex flex-col sm:relative sm:translate-x-0 z-50`}
       >
-        <div className="p-3 bg-[#003580] text-3xl font-poppins font-bold text-white">
-          <h2 className="text-2xl font-semibold">Admin</h2>
+        <div className="p-3 bg-[#003580]  font-poppins font-bold text-white">
+          <h2 className="p-1 font-semibold">Admin</h2>
         </div>
         <nav className="flex-grow p-4 bg-gray-300">
           <ul className="space-y-2">

@@ -22,7 +22,7 @@ const Dashboard = () => {
         <div className="bg-[#003580] shadow-md fixed w-full ">
           <div className="flex-shrink-0 flex p-3 items-center ">
             <Link to="/" className="text-2xl font-poppins font-bold text-white">
-              Meeting Hub
+              QuickSlot
             </Link>
           </div>
         </div>

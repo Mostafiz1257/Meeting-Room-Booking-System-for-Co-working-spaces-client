@@ -20,7 +20,6 @@ const MyBookings = () => {
 
   const handleCheckout = async (booking: Booking) => {
     navigate(`/booking-summary`, { state: { booking, user } });
-
     setCompletedBookings([...completedBookings, booking._id]);
   };
 
@@ -53,7 +52,6 @@ const MyBookings = () => {
                       {booking.slots[0]?.startTime} -{" "}
                       {booking.slots[0]?.endTime}
                     </td>
-                   
                     <td
                       className={`py-4 px-6 border-r ${
                         booking.isConfirmed === "unconfirmed"
@@ -68,21 +66,20 @@ const MyBookings = () => {
                     <td className="py-4 px-6">
                       <button
                         className={`py-2 px-4 rounded ${
-                          completedBookings.includes(booking._id)
-                            ? "bg-gray-400 "
+                          completedBookings.includes(booking._id) ||
+                          booking.isConfirmed !== "unconfirmed"
+                            ? "bg-gray-400"
                             : "bg-[#003580] hover:bg-[#001e40] text-white"
                         }`}
                         onClick={() => handleCheckout(booking)}
-                        // disabled={completedBookings.includes(booking._id)}
-                        disabled ={booking.isConfirmed!=='unconfirmed'}
-                     
+                        disabled={booking.isConfirmed !== "unconfirmed"}
                       >
-                        {completedBookings.includes(booking._id)
+                        {completedBookings.includes(booking._id) ||
+                        booking.isConfirmed !== "unconfirmed"
                           ? "Payment Complete"
                           : "Checkout"}
                       </button>
                     </td>
-                   
                   </tr>
                 ))}
               </tbody>

@@ -11,13 +11,12 @@ const Navbar = () => {
     <nav className="bg-[#003580] shadow-md ">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          {/* Logo Section */}
           <div className="flex items-center">
             <Link
               to="/"
               className="text-2xl font-bold font-poppins text-white hover:text-gray-300 transition duration-300"
             >
-              Meeting.com
+              <span className="text-4xl">Q</span>uickSlot
             </Link>
           </div>
 
@@ -59,7 +58,7 @@ const Navbar = () => {
             )}
           </div>
 
-          {/* User Dropdown */}
+         
           <div className="flex items-center space-x-4">
             <UserDropDown />
           </div>
