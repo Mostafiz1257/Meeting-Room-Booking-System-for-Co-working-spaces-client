@@ -13,9 +13,9 @@ const CreateRoom = () => {
     capacity: "",
     pricePerSlot: "",
     amenities: "",
-    image: "",
+    image: [], // Changed to array to store multiple image URLs
   });
-  const [imageFile, setImageFile] = useState<File | null>(null);
+  const [imageFiles, setImageFiles] = useState<File[]>([]); // Changed to array to handle multiple files
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -28,42 +28,44 @@ const CreateRoom = () => {
   };
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      setImageFile(file);
+    const files = e.target.files;
+    if (files) {
+      setImageFiles(Array.from(files)); // Convert FileList to array
     }
   };
 
-  const uploadImage = async () => {
-    if (!imageFile) return "";
+  const uploadImages = async (): Promise<string[]> => {
+    const uploadedImageUrls: string[] = [];
 
-    const formData = new FormData();
-    formData.append("image", imageFile);
+    for (const file of imageFiles) {
+      const formData = new FormData();
+      formData.append("image", file);
 
-    try {
-      const response = await fetch(
-        `https://api.imgbb.com/1/upload?key=63e5e5d08878e2104d3082bebc10b603`,
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
-      const data = await response.json();
-      return data.data.url;
-    } catch (error) {
-      console.error("Error uploading image:", error);
-      toast.error("Failed to upload image");
-      setIsSubmitting(false);
-      return "";
+      try {
+        const response = await fetch(
+          `https://api.imgbb.com/1/upload?key=63e5e5d08878e2104d3082bebc10b603`,
+          {
+            method: "POST",
+            body: formData,
+          }
+        );
+        const data = await response.json();
+        uploadedImageUrls.push(data.data.url);
+      } catch (error) {
+        console.error("Error uploading image:", error);
+        toast.error("Failed to upload images");
+        setIsSubmitting(false);
+      }
     }
+    return uploadedImageUrls;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const toastId = toast.loading("uploading a new room");
+    const toastId = toast.loading("Uploading new room");
     setIsSubmitting(true);
-    const imageUrl = await uploadImage();
-    if (!imageUrl) return;
+    const imageUrls = await uploadImages();
+    if (imageUrls.length === 0) return;
 
     const formattedAmenities = roomDetails.amenities
       .split(",")
@@ -77,7 +79,7 @@ const CreateRoom = () => {
       capacity: Number(roomDetails.capacity),
       pricePerSlot: Number(roomDetails.pricePerSlot),
       amenities: formattedAmenities,
-      image: imageUrl,
+      image: imageUrls, // Store the array of image URLs
     };
 
     try {
@@ -90,8 +92,9 @@ const CreateRoom = () => {
         capacity: "",
         pricePerSlot: "",
         amenities: "",
-        image: "",
+        image: [],
       });
+      setImageFiles([]);
       setIsSubmitting(false);
     } catch (error) {
       console.error("Error adding room:", error);
@@ -202,13 +205,14 @@ const CreateRoom = () => {
                 htmlFor="image"
                 className="block text-sm font-medium text-gray-700"
               >
-                Upload Image
+                Upload Images
               </label>
               <input
                 type="file"
                 id="image"
                 name="image"
                 onChange={handleImageChange}
+                multiple // Allow multiple file uploads
                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#003580] focus:border-[#003580] sm:text-sm"
               />
             </div>
