@@ -7,7 +7,7 @@ const slotManagementApi = baseApi.injectEndpoints({
         url: "/api/slots",
         method: "GET",
       }),
-      providesTags: ["slot"],
+     
     }),
 
     getSlotsByRoom: builder.query({

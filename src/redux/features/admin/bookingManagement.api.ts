@@ -7,6 +7,7 @@ const bookingManagementApi = baseApi.injectEndpoints({
         url: "/api/bookings",
         method: "GET",
       }),
+      providesTags:['slot']
     }),
     rejectBooking: builder.mutation({
       query: ({id}) => ({

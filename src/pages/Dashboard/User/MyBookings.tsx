@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { Booking } from "../../../types/booking.type";
 
 const MyBookings = () => {
-  const { data, isLoading } = useMyBookingsQuery({});
+  const { data, isLoading ,refetch } = useMyBookingsQuery({});
   const user = useAppSelector(currentUser);
   const navigate = useNavigate();
   const [completedBookings, setCompletedBookings] = useState<string[]>([]);

@@ -7,6 +7,7 @@ const userManagementApi = baseApi.injectEndpoints({
         url: "/api/my-bookings",
         method: "GET",
       }),
+      providesTags:['slot']
     }),
     allUser: builder.query({
       query:()=>({
