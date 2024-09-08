@@ -12,8 +12,8 @@ const Home = () => {
             <HeroSection></HeroSection>
             <ServiceAdvertisement></ServiceAdvertisement>
             <RoomSection></RoomSection>
-            <WhyChooseUs></WhyChooseUs>
             <BookingSteps></BookingSteps>
+            <WhyChooseUs></WhyChooseUs>
             <TestimonialsCarousel></TestimonialsCarousel>
             <ScrollToTopButton></ScrollToTopButton>
         </div>
